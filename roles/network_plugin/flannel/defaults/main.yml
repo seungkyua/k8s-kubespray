@@ -5,8 +5,8 @@
 # flannel_public_ip: "{{ access_ip|default(ip|default(ansible_default_ipv4.address)) }}"
 
 ## interface that should be used for flannel operations
-## This is actually an inventory cluster-level item
-# flannel_interface:
+## This is actually an inventory node-level item
+flannel_interface: "{{ iface|default(ansible_default_ipv4.interface) }}"
 
 ## Select interface that should be used for flannel operations by regexp on Name or IP
 ## This is actually an inventory cluster-level item

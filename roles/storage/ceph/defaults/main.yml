@@ -1,0 +1,40 @@
+---
+# ceph version : jewel, luminous
+ceph_version: jewel
+
+ceph_package_info:
+  pkgs:
+
+ceph_repo_key_info:
+  repo_keys:
+
+ceph_repo_info:
+  repos:
+
+yum_conf: /etc/yum.conf
+ceph_yum_conf: /etc/yum_ceph.conf
+
+# CentOS/RedHat ceph-ce repo
+ceph_rh_repo_base_url: 'https://download.ceph.com/rpm-{{ ceph_version }}/el7/x86_64'
+ceph_rh_repo_gpgkey: 'https://download.ceph.com/keys/release.asc'
+
+# Ubuntu ceph repo
+ceph_ubuntu_repo_base_url: 'https://download.ceph.com/debian-{{ ceph_version }}'
+ceph_ubuntu_repo_key: 'https://download.ceph.com/keys/release.asc'
+
+# storageclass
+storageclass_name: ceph
+system_namespace: kube-system
+monitors: 192.168.54.21:6789
+admin_id: admin
+admin_secret_name: ceph-secret-admin
+admin_secret_namespace: kube-system
+admin_token: QVFDcUVVVlkzUnZyQlJBQUJtaHR4SzJNdkQvd2hpaVZaNUprd3c9PQo=
+pool_name: kube
+user_id: kube
+user_secret_name: ceph-secret-user
+user_secret_namespace: kube-system
+user_token: QVFDUHJyZFlibjZQSnhBQVd5bW9yblVVVmJDa2dXTjZoK21QRmc9PQo=
+image_format: 2
+image_feature: layering
+

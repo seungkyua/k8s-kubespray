@@ -143,6 +143,24 @@
 - name: Set docker systemd config
   import_tasks: systemd.yml
 
+# oreo-kargo start >> copy docker cert file
+- name: Remove docker cert file
+  file:
+    state: absent
+    path: /etc/docker/certs.d
+
+- name: Copy docker cert file
+  copy:
+    src: certs/certs.d
+    dest: /etc/docker/
+    owner: root
+    mode: "u=rw,g=r,o=r"
+
+- name: Move docker certs directory
+  shell: "find /etc/docker/certs.d -maxdepth 1 -type d -name '*^*' -exec rename -f 's/\\^/\\:/' {} \\;"
+  ignore_errors: yes
+# oreo-kargo end >> copy docker cert file
+
 - name: ensure docker service is started and enabled
   service:
     name: "{{ item }}"
